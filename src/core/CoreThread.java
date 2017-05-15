@@ -36,7 +36,7 @@ public class CoreThread extends Thread {
 					Message m = getMessageFromQueue();
 					m.execute();
 				} catch (NoSuchElementException e) {
-					Main.printError("=CORE= : Empty Queue");
+					Main.printError("Empty Queue");
 				}
 				
 			}
