@@ -95,23 +95,39 @@ public class Main {
 		return;
 	}
 	
-	// the methods that wrap SYSO and stick letters in the front are used
-	// to help with debugging so we can see which threads messages are coming from
+	
+	/** 
+		the methods that wrap SYSO and stick letters in the front are used
+		to help with debugging so we can see which threads messages are coming from 
+	**/
+	
+	// use this to print something from the Main class
 	public static void printFromUI(String s) {
-		System.out.println("UIT === ===: " + s);
+		System.out.println("UIT === === ===: " + s);
 	}
 	
+	// use this to print something from the CoreThread
 	public static void printFromCore(String s) {
-		System.out.println("=== CRE ===: " + s);
+		System.out.println("=== CRE === ===: " + s);
+	}
+	
+	// use this to print something from the CoreThread
+	public static void printFromCleaner(String s) {
+		System.out.println("=== === JAN ===: " + s);
+	}
+	
+	// use this to print something from the connection manager
+	public static void printFromCM(String s) {
+		System.out.println("=== === === CMT: " + s);
 	}
 	
 	public static void printError(String s) {
 		if (verboseMode) {
-			printFromUI(s);
+			System.out.println("EEE EEE EEE EEE: " + s);
 		}
 		
 		// always save error to file
-		FileSaver.saveFileAppend(serverStartTime.toString(), s);
+		FileSaver.saveFileAppend(serverStartTime.toString(), "EEE EEE EEE EEE: " + s);
 	}
 	
 }
