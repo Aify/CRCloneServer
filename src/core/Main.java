@@ -104,21 +104,25 @@ public class Main {
 	// use this to print something from the Main class
 	public static void printFromUI(String s) {
 		System.out.println("UIT === === ===: " + s);
+		FileSaver.saveFileAppend(serverStartTime.toString(), "UIT === === ===: " + s);
 	}
 	
 	// use this to print something from the CoreThread
 	public static void printFromCore(String s) {
 		System.out.println("=== CRE === ===: " + s);
+		FileSaver.saveFileAppend(serverStartTime.toString(), "=== CRE === ===: " + s);
 	}
 	
 	// use this to print something from the CoreThread
 	public static void printFromCleaner(String s) {
 		System.out.println("=== === JAN ===: " + s);
+		FileSaver.saveFileAppend(serverStartTime.toString(), "=== === JAN ===: " + s);
 	}
 	
 	// use this to print something from the connection manager
 	public static void printFromCM(String s) {
 		System.out.println("=== === === CMT: " + s);
+		FileSaver.saveFileAppend(serverStartTime.toString(), "=== === === CMT: " + s);
 	}
 	
 	public static void printError(String s) {
