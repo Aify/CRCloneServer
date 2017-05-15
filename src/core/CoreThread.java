@@ -11,7 +11,8 @@ import java.util.NoSuchElementException;
  *
  */
 public class CoreThread extends Thread {
-	
+	// keeps track of whether or not the thread is fucked up.
+	public boolean daijoubu = false;
 	
 	// this queue represents a list of "actions" for the core thread to execute. Every sub thread (connection) 
 	// adds messages to this queue in order for the core of the server to update its state, which is essentially the
