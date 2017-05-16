@@ -10,6 +10,7 @@ package core;
 public class Cleaner extends Thread {
 	
 	public static long CHECK_INTERVAL = 300000; //5min*60sec*1000millis
+	public static long MAX_MESSAGE_INTERVAL = 30000; //30s*1000millis
 	
 	// keeps track of whether or not the thread is fucked up.
 	public boolean daijoubu = false;
@@ -38,7 +39,7 @@ public class Cleaner extends Thread {
 		for(ClientThread ct : Main.connManager.cthreads)
 		{
 			//remove dead threads (check for daijobou or nonsync)
-			boolean threadDeadlocked = false; //TODO: implement sync/lock check
+			boolean threadDeadlocked = (System.currentTimeMillis() - ct.timeOfLastMessage.getTime()) > MAX_MESSAGE_INTERVAL;
 			
 			if(!ct.daijoubu || threadDeadlocked)
 			{
