@@ -20,7 +20,7 @@ public class Main {
 	public static CoreThread mainProcess;
 	public static ConnectionManager connManager;
 	public static Cleaner janitor;
-	public static boolean verboseMode;
+	public static boolean verboseMode = true; // default true
 	public static Date serverStartTime;
 	public static Scanner scan;
 	

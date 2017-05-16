@@ -38,7 +38,6 @@ public class CoreThread extends Thread {
 				} catch (NoSuchElementException e) {
 					Main.printError("Empty Queue");
 				}
-				
 			}
 		} catch (Exception e) {
 			Main.printError(e.toString());
