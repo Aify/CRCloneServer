@@ -20,7 +20,7 @@ public class ClientThread extends Thread {
 	public Scanner inStream;
 	public PrintStream outStream;
 	
-	public Date timeOfLastMessage;
+	public volatile Date timeOfLastMessage;
 	
 	public Socket connection;
 	
