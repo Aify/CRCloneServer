@@ -41,6 +41,7 @@ public class ClientThread extends Thread {
 				// read input
 				String s = inStream.nextLine(); // messages from client should be temrinated with a new line char (\n)
 				Message m = new Message(s, connection.getInetAddress().toString());
+				Main.mainProcess.addMessageToQueue(m);
 				timeOfLastMessage = new Date();
 				
 			} catch (Exception e) {
