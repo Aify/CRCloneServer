@@ -133,7 +133,8 @@ public class Main {
 		}
 		
 		// always save error to file
-		FileSaver.saveFileAppend(serverStartTime.toString() + ".txt", "EEE EEE EEE EEE: " + s);
+		FileSaver.saveFileAppend(serverStartTime.getTime() + ".txt", "EEE EEE EEE EEE: " + s);
+		
 	}
 	
 }

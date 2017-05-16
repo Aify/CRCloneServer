@@ -50,10 +50,13 @@ public class FileSaver {
 	public static boolean saveFileAppend(String filename, String contents) {
 		try {
 			File f = new File(filename);		
-		
-			FileWriter writer = new FileWriter(f, true);
 			
-			writer.write(contents);
+			FileWriter writer;
+
+			writer = new FileWriter(f, true);
+			
+			
+			writer.write(contents + "\n");
 			
 			writer.close();
 			
