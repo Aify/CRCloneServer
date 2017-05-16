@@ -5,6 +5,7 @@ package core;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class ConnectionManager extends Thread {
 	private ServerSocket listener;
 	
 	// list of currently connected clientthreads
-	public ArrayList<ClientThread> cthreads = new ArrayList<ClientThread>();
+	public volatile ArrayList<ClientThread> cthreads = new ArrayList<ClientThread>();
 	
 	@Override
 	public void run() {
@@ -33,8 +34,10 @@ public class ConnectionManager extends Thread {
 		// listen for connections 
 		while (true) {
 			try {
-				listener.accept();
-				
+				Socket s = listener.accept();
+				ClientThread ct = new ClientThread(s);
+				ct.start();
+				cthreads.add(ct);
 				// do other stuff?
 			} catch (IOException e) {
 				// TODO: Deal with this
