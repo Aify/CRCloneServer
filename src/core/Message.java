@@ -10,9 +10,11 @@ package core;
 public class Message {
 
 	public String message;
+	public String senderIP;
 	
-	public Message(String m) {
+	public Message(String m, String originatingIP) {
 		message = m;
+		senderIP = originatingIP;
 	}
 	
 	// this is called when the message is read so that we can parse and deal with 
@@ -38,6 +40,13 @@ public class Message {
 				// message to specific target
 				String targetIP = components[2];
 				// send message TODO
+				break;
+			case 3: // sync message
+				for (ClientThread t : Main.connManager.cthreads) {
+					if (t.connection.getInetAddress().toString().equals(senderIP)) {
+						t.outStream.println("3{SYNC");
+					}
+				}
 				break;
 			default:
 				break;

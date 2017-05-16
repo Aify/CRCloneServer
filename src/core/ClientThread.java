@@ -22,8 +22,11 @@ public class ClientThread extends Thread {
 	
 	public Date timeOfLastMessage;
 	
+	public Socket connection;
+	
 	public ClientThread(Socket s) {
 		try {
+			connection = s;
 			inStream = new Scanner(s.getInputStream());
 			outStream = new PrintStream(s.getOutputStream());
 		} catch (IOException e) {
@@ -37,6 +40,7 @@ public class ClientThread extends Thread {
 			try {
 				// read input
 				String s = inStream.nextLine(); // messages from client should be temrinated with a new line char (\n)
+				Message m = new Message(s, connection.getInetAddress().toString());
 				timeOfLastMessage = new Date();
 				
 			} catch (Exception e) {
