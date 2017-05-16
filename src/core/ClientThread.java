@@ -6,6 +6,7 @@ package core;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,8 @@ public class ClientThread extends Thread {
 	
 	public Scanner inStream;
 	public PrintStream outStream;
+	
+	public Date timeOfLastMessage;
 	
 	public ClientThread(Socket s) {
 		try {
@@ -34,7 +37,7 @@ public class ClientThread extends Thread {
 			try {
 				// read input
 				String s = inStream.nextLine(); // messages from client should be temrinated with a new line char (\n)
-				
+				timeOfLastMessage = new Date();
 				
 			} catch (Exception e) {
 				daijoubu = false;

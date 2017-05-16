@@ -37,9 +37,11 @@ public class Main {
 		
 		// start the connection manager
 		connManager = new ConnectionManager();
+		connManager.start();
 		
 		// start the cleaner
 		janitor = new Cleaner();
+		janitor.start();
 		
 		// User input loop for server diagnosis and access/commands
 		scan = new Scanner(System.in);
