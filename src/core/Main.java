@@ -57,7 +57,9 @@ public class Main {
 			} else if (input.equalsIgnoreCase("cleanup")) {
 				// TODO: see cleanup fnc in Cleaner.java
 			} else if (input.equalsIgnoreCase("chkthds")) {
-				checkAllThreads();
+				if (!checkAllThreads()) {
+					System.exit(1);
+				}
 			} else {
 				printFromUI("Sorry, " + input + "is not a listed command. Try 'help' for a list of commands");
 			}
@@ -78,21 +80,21 @@ public class Main {
 		System.out.println("            	> Exits the program if threads aren't okay");
 	}
 	
-	public static void checkAllThreads() {
+	public static boolean checkAllThreads() {
 		if (mainProcess.daijoubu) {
 			if (connManager.daijoubu) {
 				if (janitor.daijoubu) {
 					printFromUI("All Threads OK");
-					return;
+					return true;
 				}
 				printFromUI("Cleaner Thread Daijoubu Janaii");
-				return;
+				return false;
 			}
 			printFromUI("Connection Manager Thread Daijoubu Janaii");
-			return;
+			return false;
 		}
 		printFromUI("Core Thread Daijoubu Janaii");
-		return;
+		return false;
 	}
 	
 	

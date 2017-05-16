@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class ConnectionManager extends Thread {
 	// keeps track of whether or not the thread is fucked up.
 	public boolean daijoubu = false;
+	private ServerSocket listener;
 	
 	// list of currently connected clientthreads
-	private ArrayList<ClientThread> cthreads = new ArrayList<ClientThread>();
-	private ServerSocket listener;
+	public ArrayList<ClientThread> cthreads = new ArrayList<ClientThread>();
 	
 	@Override
 	public void run() {
@@ -34,6 +34,8 @@ public class ConnectionManager extends Thread {
 		while (true) {
 			try {
 				listener.accept();
+				
+				// do other stuff?
 			} catch (IOException e) {
 				// TODO: Deal with this
 			}
