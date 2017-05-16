@@ -8,18 +8,54 @@ package core;
  *
  */
 public class Cleaner extends Thread {
+	
+	public static long CHECK_INTERVAL = 300000; //5min*60sec*1000millis
+	
 	// keeps track of whether or not the thread is fucked up.
 	public boolean daijoubu = false;
+	private long lastCheckTime;
+	
+	public Cleaner()
+	{
+		lastCheckTime = System.currentTimeMillis();
+	}
 		
 	@Override
 	public void run() {
 		while (true) {
-			
+			//run periodically
+			if((System.currentTimeMillis() - lastCheckTime) >= CHECK_INTERVAL)
+			{
+				lastCheckTime = System.currentTimeMillis();
+				cleanup();
+			}
 		}
 	}
 	
 	// tries to dead connections/threads
 	public void cleanup() {
+		//check list of client threads
+		for(ClientThread ct : Main.connManager.cthreads)
+		{
+			//remove dead threads (check for daijobou or nonsync)
+			boolean threadDeadlocked = false; //TODO: implement sync/lock check
+			
+			if(!ct.daijoubu || threadDeadlocked)
+			{
+				Main.printFromCleaner("Client thread " + ct.toString() + " not responding and killed");
+				
+				//attempt to end it gracefully
+				ct.interrupt();
+			}
+		}
+		
+		//check main thread for brokenness
+		if(!Main.checkAllThreads())
+		{
+			//something really bad happened, burn it all
+			Main.printError("Critical thread died, aborting server!");
+			System.exit(1);
+		}
 		
 	}
 }
