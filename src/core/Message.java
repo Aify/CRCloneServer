@@ -23,7 +23,7 @@ public class Message {
 		// parse message
 		String[] components = message.split("{");
 		
-		int audience = Integer.parseInt(components[1]);
+		int audience = Integer.parseInt(components[0]);
 		
 		switch (audience) {
 			case 0:
