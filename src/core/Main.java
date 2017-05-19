@@ -15,7 +15,7 @@ import util.FileSaver;
 public class Main {
 
 	// config settings
-	public static int PORT = 6789;
+	public static int PORT = 9876;
 	
 	public static CoreThread mainProcess;
 	public static ConnectionManager connManager;
