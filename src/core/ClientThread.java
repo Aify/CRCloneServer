@@ -29,23 +29,25 @@ public class ClientThread extends Thread {
 			connection = s;
 			inStream = new Scanner(s.getInputStream());
 			outStream = new PrintStream(s.getOutputStream());
+			daijoubu = true;
 		} catch (IOException e) {
 			Main.printError("Unable to open streams: " + e.toString());
 		}
 	}
 	
 	@Override
-	public void run() {
+	public void run() {		
 		while (daijoubu) {
 			try {
-				// read input
-				String s = inStream.nextLine(); // messages from client should be temrinated with a new line char (\n)
-				Message m = new Message(s, connection.getInetAddress().toString());
-				Main.mainProcess.addMessageToQueue(m);
-				timeOfLastMessage = new Date();
-				
+				if(inStream.hasNextLine()) {
+					// read input
+					String s = inStream.nextLine(); // messages from client should be temrinated with a new line char (\n)
+					Message m = new Message(s, connection.getInetAddress().toString());
+					Main.mainProcess.addMessageToQueue(m);
+					timeOfLastMessage = new Date();
+				}				
 			} catch (Exception e) {
-				daijoubu = false;
+				daijoubu = false;				
 				Main.printError(e.toString());
 			}
 		}

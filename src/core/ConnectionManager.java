@@ -40,6 +40,7 @@ public class ConnectionManager extends Thread {
 				cthreads.add(ct);
 				// do other stuff?
 				Main.gameModel.registerPlayer(ct);
+				Main.printFromCM("Client thread (" + s.getInetAddress() + ") created!");
 			} catch (IOException e) {
 				// TODO: Deal with this
 			}

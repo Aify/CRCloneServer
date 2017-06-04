@@ -18,6 +18,7 @@ public class Cleaner extends Thread {
 	
 	public Cleaner()
 	{
+		//Main.printFromCleaner("Cleaner init!");
 		lastCheckTime = System.currentTimeMillis();
 	}
 		

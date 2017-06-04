@@ -25,7 +25,7 @@ public class CRCloneModel {
 		players = new ClientThread[MAX_PLAYERS+1]; //we will be using 1-4
 	}
 	
-	public void registerPlayer(ClientThread ct)	{
+	public void registerPlayer(ClientThread ct)	{	
 		if(nextPlayer > MAX_PLAYERS) {
 			//TODO: throw an exception or print an error
 			return;

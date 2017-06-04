@@ -17,13 +17,12 @@ public class Message {
 		senderIP = originatingIP;
 	}
 	
-	//TODO track IP/player mapping... somewhere
-	
 	// this is called when the message is read so that we can parse and deal with 
 	// whatever the server needs to do. 
 	public void execute() {
 		// parse message
-		String[] components = message.split("{");
+		
+		String[] components = message.split("\\{");
 		
 		int audience = Integer.parseInt(components[0]);
 		
