@@ -17,6 +17,8 @@ public class Message {
 		senderIP = originatingIP;
 	}
 	
+	//TODO track IP/player mapping... somewhere
+	
 	// this is called when the message is read so that we can parse and deal with 
 	// whatever the server needs to do. 
 	public void execute() {
@@ -47,6 +49,9 @@ public class Message {
 						t.outStream.println("3{SYNC");
 					}
 				}
+				break;
+			case 4: //CRClone specific rotate and propagate spawn to other players
+				//TODO logic
 				break;
 			default:
 				break;
