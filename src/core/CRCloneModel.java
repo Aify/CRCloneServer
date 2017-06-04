@@ -59,7 +59,14 @@ public class CRCloneModel {
 		//transform coordinates to P1 basis
 		Point location = transformPointToP1(new Point(x,y), originatingPlayer);
 		
-		//TODO transform and propagate to *all other* players
+		//transform and propagate to *all other* players
+		for(int p = 1; p <= MAX_PLAYERS; p++) {
+			if(p != originatingPlayer) {
+				Point locationPSpace = transformPointToPx(location, p);
+				String messageOut = "5{" + cardName + "," + locationPSpace.x + "," + locationPSpace.y;
+				players[p].outStream.println(messageOut);
+			}
+		}
 		
 	}
 	
@@ -75,6 +82,19 @@ public class CRCloneModel {
 			return new Point(FIELD_WIDTH - original.x, FIELD_HEIGHT - original.y);
 		case 4:
 			return new Point(FIELD_WIDTH-original.y, original.x);
+		default:
+			return original;
+		}
+	}
+	
+	private Point transformPointToPx(Point original, int targetPlayer) {
+		switch(targetPlayer) {
+		case 2:
+			return new Point(FIELD_WIDTH-original.y, original.x);
+		case 3:
+			return new Point(FIELD_WIDTH - original.x, FIELD_HEIGHT - original.y);
+		case 4:
+			return new Point(original.y,FIELD_HEIGHT-original.x);
 		default:
 			return original;
 		}
