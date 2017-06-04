@@ -39,6 +39,7 @@ public class ConnectionManager extends Thread {
 				ct.start();
 				cthreads.add(ct);
 				// do other stuff?
+				Main.gameModel.registerPlayer(ct);
 			} catch (IOException e) {
 				// TODO: Deal with this
 			}

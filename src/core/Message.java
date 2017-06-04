@@ -51,7 +51,17 @@ public class Message {
 				}
 				break;
 			case 4: //CRClone specific rotate and propagate spawn to other players
-				//TODO logic
+				//message will look like 4{MagicBox,1,2
+				Main.gameModel.propagateSpawnMessage(components[1], senderIP);
+				break;
+			case 5: //CRClone specific ask if server is started
+				for (ClientThread t : Main.connManager.cthreads) {
+					if (t.connection.getInetAddress().toString().equals(senderIP)) {
+						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false");						
+						t.outStream.println(outMsg);
+						break;
+					}
+				}
 				break;
 			default:
 				break;

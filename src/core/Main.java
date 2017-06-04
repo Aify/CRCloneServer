@@ -20,6 +20,7 @@ public class Main {
 	public static CoreThread mainProcess;
 	public static ConnectionManager connManager;
 	public static Cleaner janitor;
+	public static CRCloneModel gameModel;
 	public static boolean verboseMode = true; // default true
 	public static Date serverStartTime;
 	public static Scanner scan;
@@ -42,6 +43,9 @@ public class Main {
 		// start the cleaner
 		janitor = new Cleaner();
 		janitor.start();
+		
+		// create a game model
+		gameModel = new CRCloneModel();
 		
 		// User input loop for server diagnosis and access/commands
 		scan = new Scanner(System.in);
