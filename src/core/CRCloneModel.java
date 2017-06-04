@@ -63,7 +63,7 @@ public class CRCloneModel {
 		for(int p = 1; p <= MAX_PLAYERS; p++) {
 			if(p != originatingPlayer) {
 				Point locationPSpace = transformPointToPx(location, p);
-				String messageOut = "5{" + cardName + "," + locationPSpace.x + "," + locationPSpace.y;
+				String messageOut = "4{" + cardName + "," + locationPSpace.x + "," + locationPSpace.y;
 				players[p].outStream.println(messageOut);
 			}
 		}
