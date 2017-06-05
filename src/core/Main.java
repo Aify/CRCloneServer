@@ -32,6 +32,9 @@ public class Main {
 		// start a debug file right away
 		serverStartTime = new Date(); // file name is always the server start time
 		
+		// create a game model
+		gameModel = new CRCloneModel();
+		
 		// start the core thread
 		mainProcess = new CoreThread();
 		mainProcess.start();
@@ -42,10 +45,7 @@ public class Main {
 		
 		// start the cleaner
 		janitor = new Cleaner();
-		janitor.start();
-		
-		// create a game model
-		gameModel = new CRCloneModel();
+		janitor.start();	
 		
 		// User input loop for server diagnosis and access/commands
 		scan = new Scanner(System.in);
