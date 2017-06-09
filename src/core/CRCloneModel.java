@@ -19,7 +19,7 @@ public class CRCloneModel {
 	
 	private ClientThread[] players;
 	private int nextPlayer = 1;
-	private boolean started = false;
+	private volatile boolean started = false;
 	
 	public CRCloneModel() {
 		players = new ClientThread[MAX_PLAYERS+1]; //we will be using 1-4
