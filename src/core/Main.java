@@ -97,15 +97,18 @@ public class Main {
 				if (janitor.daijoubu) {
 					printFromUI("All Threads OK");
 					return true;
+				} else {
+					printFromUI("Cleaner Thread Daijoubu Janaii");
+					return false;
 				}
-				printFromUI("Cleaner Thread Daijoubu Janaii");
+			} else {
+				printFromUI("Connection Manager Thread Daijoubu Janaii");
 				return false;
 			}
-			printFromUI("Connection Manager Thread Daijoubu Janaii");
+		} else {
+			printFromUI("Core Thread Daijoubu Janaii");
 			return false;
 		}
-		printFromUI("Core Thread Daijoubu Janaii");
-		return false;
 	}
 	
 	

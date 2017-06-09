@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  */
 public class CoreThread extends Thread {
 	// keeps track of whether or not the thread is fucked up.
-	public boolean daijoubu = false;
+	public volatile boolean daijoubu = false;
 	
 	// this queue represents a list of "actions" for the core thread to execute. Every sub thread (connection) 
 	// adds messages to this queue in order for the core of the server to update its state, which is essentially the
@@ -33,6 +33,7 @@ public class CoreThread extends Thread {
 		try {
 			while (true) {
 				try {
+					daijoubu = true;
 					Message m = getMessageFromQueue();
 					m.execute();
 				} catch (NoSuchElementException e) {
@@ -41,6 +42,7 @@ public class CoreThread extends Thread {
 			}
 		} catch (Exception e) {
 			Main.printError(e.toString());
+			daijoubu = false;
 		}
 		
 		System.out.println("====================Core Thread Terminated====================");
