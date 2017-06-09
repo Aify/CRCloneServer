@@ -63,7 +63,7 @@ public class CRCloneModel {
 		for(int p = 1; p <= MAX_PLAYERS; p++) {
 			if(p != originatingPlayer) {
 				Point locationPSpace = transformPointToPx(location, p);
-				String messageOut = "4{" + cardName + "," + locationPSpace.x + "," + locationPSpace.y;
+				String messageOut = "4{" + cardName + "," + locationPSpace.x + "," + locationPSpace.y + "," + p;
 				players[p].outStream.println(messageOut);
 			}
 		}
@@ -98,6 +98,18 @@ public class CRCloneModel {
 		default:
 			return original;
 		}
+	}
+
+	public int getPlayerNumber(String senderIP)
+	{
+		int originatingPlayer = 0;
+		for(int p = 1; p <= MAX_PLAYERS; p++) {
+			if(players[p].connection.getInetAddress().toString().equals(senderIP)) {
+				originatingPlayer = p;
+				break;
+			}				
+		}
+		return originatingPlayer;
 	}
 
 }

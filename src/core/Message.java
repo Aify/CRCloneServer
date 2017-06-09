@@ -59,7 +59,7 @@ public class Message {
 			case 5: //CRClone specific ask if server is started
 				for (ClientThread t : Main.connManager.cthreads) {
 					if (t.connection.getInetAddress().toString().equals(senderIP)) {
-						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false");						
+						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false") + "," + Main.gameModel.getPlayerNumber(senderIP);						
 						t.outStream.println(outMsg);
 						break;
 					}
