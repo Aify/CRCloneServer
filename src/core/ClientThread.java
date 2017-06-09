@@ -45,6 +45,7 @@ public class ClientThread extends Thread {
 					Message m = new Message(s, connection.getInetAddress().toString());
 					Main.mainProcess.addMessageToQueue(m);
 					timeOfLastMessage = new Date();
+					Main.printFromClient("Added a message");
 				}				
 			} catch (Exception e) {
 				daijoubu = false;				
