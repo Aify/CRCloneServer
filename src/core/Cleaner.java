@@ -39,15 +39,22 @@ public class Cleaner extends Thread {
 		//check list of client threads
 		for(ClientThread ct : Main.connManager.cthreads)
 		{
-			//remove dead threads (check for daijobou or nonsync)
-			boolean threadDeadlocked = (System.currentTimeMillis() - ct.timeOfLastMessage.getTime()) > MAX_MESSAGE_INTERVAL;
-			
-			if(!ct.daijoubu || threadDeadlocked)
-			{
-				Main.printFromCleaner("Client thread " + ct.toString() + " not responding and killed");
+			try {
+				//remove dead threads (check for daijobou or nonsync)
+				boolean threadDeadlocked = (System.currentTimeMillis() - ct.timeOfLastMessage.getTime()) > MAX_MESSAGE_INTERVAL;
 				
-				//attempt to end it gracefully
-				ct.interrupt();
+				if(!ct.daijoubu || threadDeadlocked)
+				{
+					Main.printFromCleaner("Client thread " + ct.toString() + " not responding and killed");
+					
+					//attempt to end it gracefully
+					ct.interrupt();
+				}
+			} catch (NullPointerException e) {
+				// ct was null (probably) 
+				Main.printFromCleaner("Null Pointer Exception");
+				Main.printFromCleaner(e.getMessage());
+				Main.printFromCleaner("--- Stack Trace End ---");
 			}
 		}
 		
