@@ -15,7 +15,7 @@ public class CRCloneModel {
 	private final int FIELD_WIDTH = 700;
 	private final int FIELD_HEIGHT = 700;
 	
-	private final int MAX_PLAYERS = 4; //dunno why I const'ed this, the algorithms won't work for any other player count
+	public static int MAX_PLAYERS = 2; //dunno why I const'ed this, the algorithms won't work for any other player count
 	
 	private ClientThread[] players;
 	private int nextPlayer = 1;

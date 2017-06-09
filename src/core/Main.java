@@ -32,6 +32,10 @@ public class Main {
 		// start a debug file right away
 		serverStartTime = new Date(); // file name is always the server start time
 		
+		if (args.length >= 1) {
+			CRCloneModel.MAX_PLAYERS = Integer.parseInt(args[0]); 
+		}
+		
 		// create a game model
 		gameModel = new CRCloneModel();
 		
@@ -53,7 +57,7 @@ public class Main {
 			String input = scan.nextLine();
 			
 			if (input.equalsIgnoreCase("help")) {
-				// display help menu (commands list)
+				printHelpMenu();
 			} else if (input.equalsIgnoreCase("exit")) {
 				System.exit(0);
 			} else if (input.equalsIgnoreCase("list")) {
@@ -76,6 +80,7 @@ public class Main {
 	// lists commands and how to use server
 	public static void printHelpMenu() {
 		System.out.println("======================================= HELP =======================================");
+		System.out.println("Usage: java -jar CRServer.java <number of player>");
 		System.out.println("Commands:");
 		System.out.println("    exit 	- Exits the server");
 		System.out.println("    list 	- Lists all current connections and connection details");
