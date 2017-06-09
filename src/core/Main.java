@@ -138,6 +138,11 @@ public class Main {
 		FileSaver.saveFileAppend(serverStartTime.getTime() + ".txt", "=== === === CMT: " + s);
 	}
 	
+	public static void printFromClient(String s) {
+		System.out.println("=== === === CLT: " + s);
+		FileSaver.saveFileAppend(serverStartTime.getTime() + ".txt", "=== === === CTT: " + s);
+	}
+	
 	public static void printError(String s) {
 		if (verboseMode) {
 			System.out.println("EEE EEE EEE EEE: " + s);
