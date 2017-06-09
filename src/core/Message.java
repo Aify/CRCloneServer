@@ -61,6 +61,7 @@ public class Message {
 					if (t.connection.getInetAddress().toString().equals(senderIP)) {
 						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false") + "," + Main.gameModel.getPlayerNumber(senderIP);						
 						t.outStream.println(outMsg);
+						t.outStream.flush();
 						break;
 					}
 				}
