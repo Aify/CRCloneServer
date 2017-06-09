@@ -41,6 +41,12 @@ public class ConnectionManager extends Thread {
 				// do other stuff?
 				Main.gameModel.registerPlayer(ct);
 				Main.printFromCM("Client thread (" + s.getInetAddress() + ") created!");
+				
+				// check started
+				if (Main.gameModel.isStarted()) {
+					Main.printFromCM("Game Started");
+				}
+				
 			} catch (IOException e) {
 				// TODO: Deal with this
 			}

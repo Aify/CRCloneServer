@@ -26,6 +26,8 @@ public class Message {
 		
 		int audience = Integer.parseInt(components[0]);
 		
+		Main.printFromCore("Message From IP: " + senderIP);
+		
 		switch (audience) {
 			case 0:
 				// system message
@@ -52,6 +54,7 @@ public class Message {
 			case 4: //CRClone specific rotate and propagate spawn to other players
 				//message will look like 4{MagicBox,1,2
 				Main.gameModel.propagateSpawnMessage(components[1], senderIP);
+				Main.printFromCore("Message type 4 Handled - rotation propogation");
 				break;
 			case 5: //CRClone specific ask if server is started
 				for (ClientThread t : Main.connManager.cthreads) {
@@ -61,6 +64,7 @@ public class Message {
 						break;
 					}
 				}
+				Main.printFromCore("Message type 5 Handled: Client Pinging for isStarted = " + Main.gameModel.isStarted());
 				break;
 			default:
 				break;
