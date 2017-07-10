@@ -11,10 +11,12 @@ public class Message {
 
 	public String message;
 	public String senderIP;
+	public int portnum;
 	
-	public Message(String m, String originatingIP) {
+	public Message(String m, String originatingIP, int pnum) {
 		message = m;
 		senderIP = originatingIP;
+		portnum = pnum;
 	}
 	
 	// this is called when the message is read so that we can parse and deal with 
@@ -53,7 +55,7 @@ public class Message {
 				break;
 			case 4: //CRClone specific rotate and propagate spawn to other players
 				//message will look like 4{MagicBox,1,2
-				Main.gameModel.propagateSpawnMessage(components[1], senderIP);
+				Main.gameModel.propagateSpawnMessage(components[1], senderIP, portnum);
 				Main.printFromCore("Message type 4 Handled - rotation propogation");
 				break;
 			case 5: //CRClone specific ask if server is started

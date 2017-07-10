@@ -42,7 +42,7 @@ public class Main {
 		// start the core thread
 		mainProcess = new CoreThread();
 		mainProcess.start();
-		
+
 		// start the connection manager
 		connManager = new ConnectionManager();
 		connManager.start();

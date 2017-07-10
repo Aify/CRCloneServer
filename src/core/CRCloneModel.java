@@ -40,7 +40,7 @@ public class CRCloneModel {
 		}
 	}
 	
-	public void propagateSpawnMessage(String message, String senderIP) {
+	public void propagateSpawnMessage(String message, String senderIP, int portnum) {
 		//decode message
 		String[] msgPieces = message.split(",");
 		String cardName = msgPieces[0];
@@ -50,7 +50,7 @@ public class CRCloneModel {
 		//figure out who sent it
 		int originatingPlayer = 0;
 		for(int p = 1; p <= MAX_PLAYERS; p++) {
-			if(players[p].connection.getInetAddress().toString().equals(senderIP)) {
+			if(players[p].connection.getInetAddress().toString().equals(senderIP) && players[p].connection.getPort() == portnum) {
 				originatingPlayer = p;
 				break;
 			}				
