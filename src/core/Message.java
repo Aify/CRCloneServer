@@ -28,7 +28,7 @@ public class Message {
 		
 		int audience = Integer.parseInt(components[0]);
 		
-		Main.printFromCore("Message From IP: " + senderIP);
+		Main.printFromCore("Message From IP: " + senderIP + ":" + pnum);
 		
 		switch (audience) {
 			case 0:
@@ -48,7 +48,7 @@ public class Message {
 				break;
 			case 3: // sync message
 				for (ClientThread t : Main.connManager.cthreads) {
-					if (t.connection.getInetAddress().toString().equals(senderIP)) {
+					if (t.connection.getInetAddress().toString().equals(senderIP) && t.connection.getPort() == pnum) {
 						t.outStream.println("3{SYNC");
 					}
 				}
@@ -60,8 +60,8 @@ public class Message {
 				break;
 			case 5: //CRClone specific ask if server is started
 				for (ClientThread t : Main.connManager.cthreads) {
-					if (t.connection.getInetAddress().toString().equals(senderIP)) {
-						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false") + "," + Main.gameModel.getPlayerNumber(senderIP);						
+					if (t.connection.getInetAddress().toString().equals(senderIP) && t.connection.getPort() == pnum) {
+						String outMsg = "5{" + (Main.gameModel.isStarted() ? "true" : "false") + "," + Main.gameModel.getPlayerNumber(senderIP, pnum);						
 						t.outStream.println(outMsg);
 						t.outStream.flush();
 						break;

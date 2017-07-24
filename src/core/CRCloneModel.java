@@ -100,11 +100,11 @@ public class CRCloneModel {
 		}
 	}
 
-	public int getPlayerNumber(String senderIP)
+	public int getPlayerNumber(String senderIP, int senderPort)
 	{
 		int originatingPlayer = 0;
 		for(int p = 1; p <= MAX_PLAYERS; p++) {
-			if(players[p].connection.getInetAddress().toString().equals(senderIP)) {
+			if(players[p].connection.getInetAddress().toString().equals(senderIP) && players[p].connection.getPort() == senderPort) {
 				originatingPlayer = p;
 				break;
 			}				
