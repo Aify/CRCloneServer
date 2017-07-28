@@ -48,22 +48,20 @@ public class FileSaver {
 	 * @return whether or not we successfully saved the file
 	 */
 	public static boolean saveFileAppend(String filename, String contents) {
-		try {
+		try {	
+		
 			File f = new File(filename);		
 			
-			FileWriter writer;
-
-			writer = new FileWriter(f, true);
+			FileWriter writer = new FileWriter(f, true);
 			
-			
-			writer.write(contents + "\n");
+			writer.write(contents);
 			
 			writer.close();
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		return false;
 	}
